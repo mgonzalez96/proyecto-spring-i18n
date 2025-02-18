@@ -14,11 +14,20 @@ public class InternacionalizacionController {
     @Autowired
     private MessageSource messageSource;
 
+    /*
+     * Método que retorna el saludo, modifiqué el método original adicionando más llamados del archivo properties con más saludos
+     */
     @GetMapping("/saludo")
     public String saludo(@RequestHeader(name = "Accept-Language", required = false) String language) {
         Locale locale = (language != null) ? Locale.forLanguageTag(language) : Locale.getDefault();
         
-        return messageSource.getMessage("welcome.message", null, locale);
+        String saludos = messageSource.getMessage("welcome.greeting", null, locale);
+        saludos += " ";
+        saludos += messageSource.getMessage("welcome.desarrollo", null, locale);
+        saludos += " ";
+        saludos += messageSource.getMessage("welcome.fin", null, locale);
+
+        return saludos;
     }
     //Ejemplo peticion con el header -> Accept-Language <-
     //"Accept-Language: es" http://localhost:8080/saludo
@@ -33,6 +42,9 @@ public class InternacionalizacionController {
      * }
      */
 
+     /*
+      * En caso de que retorne un error la peticion se mostrará el mensaje del método
+      */
     @GetMapping("/error")
     public String errorEndpoint() {
         return "Ha Ocurrido un error al tratar su petición";

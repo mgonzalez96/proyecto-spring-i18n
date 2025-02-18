@@ -15,6 +15,7 @@ public class CustomErrorController implements ErrorController {
         return "Ha Ocurrido un error al tratar su petición";
     }
 
+    //Retorna la página que muestra el mensaje de error
     public String getErrorPath() {
         return "/error";
     }

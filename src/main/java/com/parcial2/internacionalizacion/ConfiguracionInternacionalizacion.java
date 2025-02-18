@@ -8,6 +8,9 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 @Configuration
 public class ConfiguracionInternacionalizacion {
 
+    /*
+     * Clase de configuración y método Bean para tomar el archivo .properties de donde va a obtener los mensajes
+     */
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
